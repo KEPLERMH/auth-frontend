@@ -33,10 +33,18 @@ const Navbar = ({ user, setUser, API_URL }) => {
             </button>
           ) : (
             <>
-              <Link to="/login" className="">
+              <Link
+                to="/login"
+                className=" text-xl inline-block transform hover:text-neutral-400 transition-transform duration-300 hover:scale-105 "
+              >
                 Login
               </Link>
-              <Link to="/Register">Register</Link>
+              <Link
+                to="/Register"
+                className="text-xl inline-block transform transition-transform duration-300  hover:text-neutral-400 hover:scale-105"
+              >
+                Register
+              </Link>
             </>
           )}
         </div>

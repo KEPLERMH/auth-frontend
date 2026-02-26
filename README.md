@@ -1,19 +1,14 @@
-# 🔐 Auth User Frontend
+# 🔐 Auth User
 
 Frontend de aplicación de autenticación construido con **React + Vite + React Router + React Hook Form + Axios**.
 
-Este proyecto maneja:
-
-- Registro de usuario
-- Login
-- Persistencia de sesión con cookies httpOnly
-- Verificación automática de sesión (`/me`)
-- Renderizado condicional según estado autenticado
-- Arquitectura limpia con layouts
+Esta aplicación se conecta a un backend en producción y a una base de datos PostgreSQL en la nube.
 
 ---
 
 ## 🚀 Tecnologías
+
+### Frontend
 
 - React
 - Vite
@@ -22,6 +17,43 @@ Este proyecto maneja:
 - Axios
 - TailwindCSS
 
+### Backend
+
+- Node.js
+- Express
+- JWT (Autenticación)
+- Deployado en **Render**
+
+### Base de Datos
+
+- PostgreSQL
+- Hosting en **Neon (Postgres Serverless)**
+
+---
+
+## 🌍 Arquitectura en Producción
+
+```
+Frontend (Vercel)
+        ↓
+Backend (Render)
+        ↓
+Database (Neon - PostgreSQL)
+```
+
+### 🔹 Frontend
+
+Deployado en Vercel.
+
+### 🔹 Backend
+
+API REST construida con Node.js y Express.
+Deployada en Render.
+
+### 🔹 Base de Datos
+
+PostgreSQL alojado en Neon.
+
 ---
 
 ## 📁 Estructura del Proyecto
@@ -29,30 +61,18 @@ Este proyecto maneja:
 ```
 src/
  ├── components/
- │     ├── Navbar.jsx
- │     ├── FormInput.jsx
- │
  ├── layouts/
- │     ├── AuthLayout.jsx
- │
  ├── pages/
- │     ├── Home.jsx
- │     ├── Login.jsx
- │     ├── Register.jsx
- │
  ├── services/
- │     ├── api.js
- │     ├── authService.js
- │
  ├── App.jsx
  ├── main.jsx
 ```
 
 ---
 
-## ⚙️ Instalación
+## ⚙️ Instalación Local
 
-Clonar el repositorio:
+Clonar repositorio:
 
 ```bash
 git clone https://github.com/KEPLERMH/auth-frontend.git
@@ -65,81 +85,34 @@ Instalar dependencias:
 npm install
 ```
 
----
-
-## 🧪 Variables de Entorno
-
-Crear un archivo `.env` en la raíz del proyecto:
+Crear archivo `.env`:
 
 ```
 VITE_API_URL=http://localhost:5000
 ```
 
-En producción:
-
-```
-VITE_API_URL=https://tu-backend.com
-```
-
-⚠️ Todas las variables deben comenzar con `VITE_`.
-
----
-
-## ▶️ Ejecutar en Desarrollo
+Ejecutar:
 
 ```bash
 npm run dev
-```
-
-El proyecto correrá en:
-
-```
-http://localhost:5173
 ```
 
 ---
 
 ## 🔐 Autenticación
 
-La aplicación utiliza cookies httpOnly para mantener la sesión.
+La aplicación usa:
 
-Flujo:
-
-1. Usuario hace login
-2. Backend envía cookie con JWT
-3. Frontend ejecuta `GET /api/auth/me`
-4. Si el token es válido → `setUser(user)`
-5. Navbar renderiza según estado
+- Cookies httpOnly
+- JWT firmados en backend
+- Verificación automática mediante `/api/auth/me`
+- Persistencia de sesión entre recargas
 
 Axios está configurado con:
 
 ```js
 axios.defaults.withCredentials = true;
 ```
-
-Para permitir el envío de cookies en requests cross-origin.
-
----
-
-## 🌍 Deploy
-
-Recomendado para producción:
-
-Frontend:
-
-- Vercel
-- Netlify
-
-Backend:
-
-- Railway
-- Render
-
-Recordar actualizar:
-
-- `VITE_API_URL`
-- Configuración CORS del backend
-- `sameSite: "none"` y `secure: true` en producción
 
 ---
 
@@ -155,13 +128,25 @@ npm run preview  # Preview del build
 
 ## 📌 Notas Importantes
 
-- No almacenar tokens en localStorage
-- La cookie es manejada automáticamente por el navegador
-- El estado de autenticación se reconstruye al recargar mediante `/me`
-- Usar HTTPS en producción
+- El frontend no almacena tokens en localStorage.
+- La autenticación se maneja con cookies seguras.
+- En producción se usa:
+  - `sameSite: "none"`
+  - `secure: true`
+
+- CORS está configurado para permitir comunicación entre Vercel y Render.
 
 ---
 
-## 📄 Licencia
+## 🎯 Estado del Proyecto
 
-Proyecto educativo de práctica de autenticación con React y Node.js.
+Proyecto fullstack listo para producción con:
+
+- Deploy en la nube
+- Base de datos externa
+- Autenticación segura
+- Arquitectura moderna
+
+---
+
+Proyecto desarrollado con fines educativos y prácticos para implementación real de autenticación fullstack.
